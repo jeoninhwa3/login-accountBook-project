@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Detail from "../pages/Detail";
 import Layout from "../Layout";
+import Login from "../pages/Login";
+import Join from "../pages/Join";
 
 const Router = ({ selectedMonth, setSelectedMonth, expenses, setExpenses }) => {
   return (
@@ -23,6 +25,8 @@ const Router = ({ selectedMonth, setSelectedMonth, expenses, setExpenses }) => {
             path="/detail/:id"
             element={<Detail expenses={expenses} setExpenses={setExpenses} />}
           />
+          <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="/Join" element={<Join></Join>}></Route>
         </Routes>
       </Layout>
     </BrowserRouter>
