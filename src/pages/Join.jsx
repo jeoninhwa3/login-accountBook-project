@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import register from "../lib/api/auth";
 
 // styled components
 const StContainer = styled.div`
@@ -48,30 +50,53 @@ const StJoinBtn = styled.button`
 
 const Join = () => {
   const navigate = useNavigate();
-  const onSubmit = () => {};
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [nickname, setNickname] = useState("");
+
+  const handleSingin = async () => {
+    // API 호출
+    const response = await register({
+      id: id,
+      password: password,
+      nickname: nickname,
+    });
+    if (response) {
+      navigate("/login");
+      confirm("회원가입이 완료되었습니다.");
+    }
+  };
   return (
     <StContainer>
-      <StForm onSubmit={onSubmit}>
+      <StForm>
         <StInput
           minLength="4"
           maxLength="10"
           type="text"
           placeholder="아이디"
+          value={id}
+          onChange={(e) => setId(e.target.value)}
         />
         <StInput
           minLength="4"
           maxLength="15"
           type="password"
           placeholder="비밀번호"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <StInput
           minLength="1"
           maxLength="10"
           type="text"
           placeholder="닉네임"
+          value={nickname}
+          onChange={(e) => setNickname(e.target.value)}
         />
         <StbtnBox>
-          <StLoginBtn type="submit">회원가입</StLoginBtn>
+          <StLoginBtn type="button" onClick={handleSingin}>
+            회원가입
+          </StLoginBtn>
           <StJoinBtn type="button" onClick={() => navigate(-1)}>
             뒤로가기
           </StJoinBtn>
