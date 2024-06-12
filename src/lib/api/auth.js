@@ -3,7 +3,7 @@ import axios from "axios";
 const AUTH_API_URL = "https://moneyfulpublicpolicy.co.kr";
 
 // 회원 정보 서버로 보내기
-const register = async ({ id, password, nickname }) => {
+export const register = async ({ id, password, nickname }) => {
   try {
     const response = await axios.post(`${AUTH_API_URL}/register`, {
       id: id,
@@ -17,4 +17,15 @@ const register = async ({ id, password, nickname }) => {
   }
 };
 
-export default register;
+// 로그인
+export const signIn = async ({ id, password }) => {
+  try {
+    const response = await axios.post(`${AUTH_API_URL}/login`, {
+      id: id,
+      password: password,
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

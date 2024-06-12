@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import register from "../lib/api/auth";
+import { register } from "../lib/api/auth";
 
 // styled components
 const StContainer = styled.div`
@@ -54,7 +54,7 @@ const Join = () => {
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
 
-  const handleSingin = async () => {
+  const handleSignup = async () => {
     // API 호출
     const response = await register({
       id: id,
@@ -94,7 +94,7 @@ const Join = () => {
           onChange={(e) => setNickname(e.target.value)}
         />
         <StbtnBox>
-          <StLoginBtn type="button" onClick={handleSingin}>
+          <StLoginBtn type="button" onClick={handleSignup}>
             회원가입
           </StLoginBtn>
           <StJoinBtn type="button" onClick={() => navigate(-1)}>

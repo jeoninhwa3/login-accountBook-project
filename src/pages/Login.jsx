@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useState } from "react";
+import { signIn } from "../lib/api/auth";
 
 // styled components
 const StContainer = styled.div`
@@ -48,14 +50,37 @@ const StJoinBtn = styled.button`
 
 const Login = () => {
   const navigate = useNavigate();
-  const onSubmit = (e) => {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
     e.preventDefault();
+
+    const response = await signIn({
+      id: id,
+      password: password,
+    });
+
+    if (response) {
+      navigate("/");
+      alert("로그인 되었습니다.");
+    }
   };
   return (
     <StContainer>
-      <StForm onSubmit={onSubmit}>
-        <StInput type="text" placeholder="아이디" />
-        <StInput type="password" placeholder="비밀번호" />
+      <StForm onSubmit={handleLogin}>
+        <StInput
+          type="text"
+          placeholder="아이디"
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+        />
+        <StInput
+          type="password"
+          placeholder="비밀번호"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <StbtnBox>
           <StLoginBtn type="submit">로그인</StLoginBtn>
           <StJoinBtn type="button" onClick={() => navigate("/join")}>
