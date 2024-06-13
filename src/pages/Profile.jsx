@@ -30,7 +30,7 @@ const StInput = styled.input`
   border: 1px solid #dadada;
   border-radius: 5px;
   padding: 10px 20px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   text-align: center;
   &:focus {
     border: 1px solid #dadada;
@@ -79,6 +79,7 @@ const Profile = ({ user, setUser }) => {
         <button type="submit" onClick={handleChangeProfile}>
           프로필 변경
         </button>
+        <button onClick={() => navigate("/")}>뒤로가기</button>
       </form>
     </StContainer>
   );

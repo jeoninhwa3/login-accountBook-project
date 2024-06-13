@@ -13,6 +13,19 @@ export const getExpenses = async () => {
   }
 };
 
+// 디테일 페이지 지출 데이터 조회
+export const getExpensesDetail = async ({ queryKey }) => {
+  try {
+    const response = await axios.get(
+      `${JSON_SERVER_URL}/expenses/${queryKey[1]}`
+    );
+    return response;
+  } catch (error) {
+    console.log(error.response.data.message);
+    alert(error.response.data.message);
+  }
+};
+
 // 지출 데이터 등록
 export const addExpenses = async (newExpense) => {
   try {

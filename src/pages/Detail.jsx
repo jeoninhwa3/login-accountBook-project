@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getExpensesDetail } from "../lib/api/expense";
 
 // styled components
 const StContainer = styled.div`
@@ -38,15 +40,30 @@ const StBtn = styled.button`
   cursor: pointer;
 `;
 
-const Detail = ({ expenses, setExpenses }) => {
+const Detail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const {
+    data: selectedExpense,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["expense", id],
+    queryFn: getExpensesDetail,
+  });
 
-  const selectedExpense = expenses.find((expense) => expense.id === id);
-  const [date, setDate] = useState(selectedExpense.date);
-  const [item, setItem] = useState(selectedExpense.item);
-  const [amount, setAmount] = useState(selectedExpense.amount);
-  const [description, setDescription] = useState(selectedExpense.description);
+  const [date, setDate] = useState("");
+  const [item, setItem] = useState("");
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+  useEffect(() => {
+    if (selectedExpense) {
+      setDate(selectedExpense.data.date);
+      setItem(selectedExpense.data.item);
+      setAmount(selectedExpense.data.amount);
+      setDescription(selectedExpense.data.description);
+    }
+  }, [selectedExpense]);
 
   const editExpense = () => {
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;
@@ -59,30 +76,14 @@ const Detail = ({ expenses, setExpenses }) => {
       alert("항목과 내용을 모두 입력해주세요.");
       return;
     }
-
-    const newExpenses = expenses.map((expense) => {
-      if (expense.id !== id) {
-        return expense;
-      } else {
-        return {
-          ...expense,
-          date,
-          item,
-          amount,
-          description,
-        };
-      }
-    });
-    setExpenses(newExpenses);
-    navigate("/");
   };
-  const deleteExpense = () => {
-    if (confirm("정말로 삭제하시겠습니까?")) {
-      const newExpenses = expenses.filter((expense) => expense.id !== id);
-      setExpenses(newExpenses);
-      navigate("/");
-    }
-  };
+  // const deleteExpense = () => {
+  //   if (confirm("정말로 삭제하시겠습니까?")) {
+  //     const newExpenses = expenses.filter((expense) => expense.id !== id);
+  //     setExpenses(newExpenses);
+  //     navigate("/");
+  //   }
+  // };
 
   return (
     <StContainer>
@@ -130,9 +131,7 @@ const Detail = ({ expenses, setExpenses }) => {
       </StForm>
       <StBtnBox>
         <StBtn onClick={editExpense}>수정</StBtn>
-        <StBtn onClick={deleteExpense} type="submit">
-          삭제
-        </StBtn>
+        <StBtn type="submit">삭제</StBtn>
         <StBtn
           onClick={() => {
             navigate("/");
