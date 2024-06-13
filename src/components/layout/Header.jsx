@@ -34,7 +34,7 @@ const Header = ({ user, setUser }) => {
           <>
             <button onClick={() => navigate("/profile")}>my profile</button>
             <div>
-              <img src="{user.avatar}" alt="user avatar" />
+              <img src={user.avatar} alt="user avatar" width={50} />
               <span>{user.nickname}</span>
             </div>
             <button onClick={handleLogout}>logout</button>

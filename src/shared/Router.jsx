@@ -4,6 +4,7 @@ import Detail from "../pages/Detail";
 import Layout from "../components/layout/Layout";
 import Login from "../pages/Login";
 import Join from "../pages/Join";
+import Profile from "../pages/Profile";
 
 const Router = ({
   selectedMonth,
@@ -32,6 +33,10 @@ const Router = ({
             path="/detail/:id"
             element={<Detail expenses={expenses} setExpenses={setExpenses} />}
           />
+          <Route
+            path="/profile"
+            element={<Profile user={user} setUser={setUser} />}
+          ></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/Join" element={<Join />}></Route>
         </Routes>

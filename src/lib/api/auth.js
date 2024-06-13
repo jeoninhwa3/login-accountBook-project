@@ -49,3 +49,23 @@ export const getUser = async () => {
     }
   }
 };
+
+// 프로필 변경
+export const UpdateProfile = async (formData) => {
+  console.log(formData);
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    try {
+      const response = await axios.patch(`${AUTH_API_URL}/profile`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      alert(error.response.data.message);
+      localStorage.clear();
+    }
+  }
+};
