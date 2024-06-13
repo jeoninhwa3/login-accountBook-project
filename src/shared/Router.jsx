@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Detail from "../pages/Detail";
-import Layout from "../Layout";
+import Layout from "../components/layout/Layout";
 import Login from "../pages/Login";
 import Join from "../pages/Join";
 
@@ -10,11 +10,12 @@ const Router = ({
   setSelectedMonth,
   expenses,
   setExpenses,
+  user,
   setUser,
 }) => {
   return (
     <BrowserRouter>
-      <Layout>
+      <Layout user={user} setUser={setUser}>
         <Routes>
           <Route
             path="/"

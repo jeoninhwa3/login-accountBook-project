@@ -20,7 +20,7 @@ export const register = async ({ id, password, nickname }) => {
 // 로그인
 export const signIn = async ({ id, password }) => {
   try {
-    const response = await axios.post(`${AUTH_API_URL}/login`, {
+    const response = await axios.post(`${AUTH_API_URL}/login?expiresIn=10m`, {
       id: id,
       password: password,
     });
@@ -44,8 +44,8 @@ export const getUser = async () => {
       });
       return response.data;
     } catch (error) {
-      console.log(error.response.data.message);
       alert(error.response.data.message);
+      localStorage.clear();
     }
   }
 };
