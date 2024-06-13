@@ -24,8 +24,28 @@ export const signIn = async ({ id, password }) => {
       id: id,
       password: password,
     });
+    localStorage.setItem("accessToken", response.data.accessToken);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error.response.data.message);
+    alert(error.response.data.message);
+  }
+};
+
+// 유저정보 확인
+export const getUser = async () => {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    try {
+      const response = await axios.get(`${AUTH_API_URL}/user`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error.response.data.message);
+      alert(error.response.data.message);
+    }
   }
 };
