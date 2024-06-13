@@ -30,16 +30,14 @@ const Header = ({ user, setUser }) => {
     <StHeader>
       <h1 onClick={() => navigate("/")}>Account Book</h1>
       <div>
-        {user && (
-          <>
-            <button onClick={() => navigate("/profile")}>my profile</button>
-            <div>
-              <img src={user.avatar} alt="user avatar" width={50} />
-              <span>{user.nickname}</span>
-            </div>
-            <button onClick={handleLogout}>logout</button>
-          </>
-        )}
+        <>
+          <button onClick={() => navigate("/profile")}>my profile</button>
+          <div>
+            <img src={user?.avatar} alt="user avatar" width={50} />
+            <span>{user?.nickname}</span>
+          </div>
+          <button onClick={handleLogout}>logout</button>
+        </>
       </div>
     </StHeader>
   );

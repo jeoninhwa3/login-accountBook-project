@@ -48,7 +48,7 @@ const StJoinBtn = styled.button`
   cursor: pointer;
 `;
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
@@ -64,6 +64,11 @@ const Login = () => {
     if (response) {
       navigate("/");
       alert("로그인 되었습니다.");
+      setUser({
+        id: response.userId,
+        nickname: response.nickname,
+        avatar: response.avatar,
+      });
     }
   };
   return (

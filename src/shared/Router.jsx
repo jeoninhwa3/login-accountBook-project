@@ -37,7 +37,7 @@ const Router = ({
             path="/profile"
             element={<Profile user={user} setUser={setUser} />}
           ></Route>
-          <Route path="/login" element={<Login />}></Route>
+          <Route path="/login" element={<Login setUser={setUser} />}></Route>
           <Route path="/Join" element={<Join />}></Route>
         </Routes>
       </Layout>
