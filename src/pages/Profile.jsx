@@ -7,6 +7,35 @@ import { useNavigate } from "react-router-dom";
 const StContainer = styled.div`
   display: flex;
   justify-content: center;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    padding: 30px 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    button {
+      width: 40%;
+      margin-top: 20px;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 25px;
+      cursor: pointer;
+    }
+  }
+`;
+const StInput = styled.input`
+  width: 70%;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  text-align: center;
+  &:focus {
+    border: 1px solid #dadada;
+    outline: none;
+  }
 `;
 
 const Profile = ({ user, setUser }) => {
@@ -35,9 +64,9 @@ const Profile = ({ user, setUser }) => {
   return (
     <StContainer>
       <form>
-        <input
+        <StInput
           type="text"
-          placeholder="닉네임"
+          placeholder="변경하고 싶은 닉네임을 적어주세요."
           minLength="1"
           maxLength="10"
           onChange={(e) => setNickname(e.target.value)}
