@@ -1,5 +1,11 @@
 import styled from "styled-components";
 import uuid from "react-uuid";
+import { addExpenses } from "../lib/api/expense";
+import {
+  QueryClient,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 
 // styled components
 const StForm = styled.form`
@@ -31,7 +37,16 @@ const StBtn = styled.button`
   cursor: pointer;
 `;
 
-const AddExpenses = ({ setExpenses }) => {
+const AddExpenses = ({ user }) => {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: addExpenses,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["expense"]);
+    },
+  });
+
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -64,12 +79,12 @@ const AddExpenses = ({ setExpenses }) => {
       item,
       amount,
       description,
+      createdBy: user.nickname,
     };
 
-    setExpenses((prev) => [...prev, nextExpense]);
+    mutation.mutate(nextExpense);
     e.target.reset();
   };
-
   return (
     <StForm onSubmit={onSubmit}>
       <StLabel>

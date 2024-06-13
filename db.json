@@ -62,6 +62,14 @@
       "amount": 100000,
       "description": "세광양대창",
       "createdBy": "Me"
+    },
+    {
+      "id": "7a682366-8aa2-5fcd-c8ec-62d60534a929",
+      "date": "2024-06-13",
+      "item": "ddd",
+      "amount": "222",
+      "description": "ddd",
+      "createdBy": "인화1"
     }
   ]
 }

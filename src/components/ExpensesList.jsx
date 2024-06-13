@@ -37,7 +37,7 @@ const StDesc = styled.p`
   overflow: hidden;
 `;
 
-const ExpensesList = ({ user }) => {
+const ExpensesList = () => {
   const {
     data: expenses = [],
     isLoading,
@@ -49,6 +49,7 @@ const ExpensesList = ({ user }) => {
   if (isLoading) {
     return <div>로딩중입니다.</div>;
   }
+  console.log(expenses);
   return (
     <StUl>
       {expenses.data.map((el) => {
@@ -57,7 +58,7 @@ const ExpensesList = ({ user }) => {
             <StLink to={`/detail/${el.id}`}>
               <div>
                 <p>
-                  {el.date} / {user.nickname}
+                  {el.date} / {el.createdBy}
                 </p>
                 <StDesc>
                   {el.item} - {el.description}

@@ -6,14 +6,7 @@ import Login from "../pages/Login";
 import Join from "../pages/Join";
 import Profile from "../pages/Profile";
 
-const Router = ({
-  selectedMonth,
-  setSelectedMonth,
-  expenses,
-  setExpenses,
-  user,
-  setUser,
-}) => {
+const Router = ({ selectedMonth, setSelectedMonth, user, setUser }) => {
   return (
     <BrowserRouter>
       <Layout user={user} setUser={setUser}>
@@ -24,17 +17,12 @@ const Router = ({
               <Home
                 selectedMonth={selectedMonth}
                 setSelectedMonth={setSelectedMonth}
-                expenses={expenses}
-                setExpenses={setExpenses}
                 user={user}
                 setUser={setUser}
               />
             }
           />
-          <Route
-            path="/detail/:id"
-            element={<Detail expenses={expenses} setExpenses={setExpenses} />}
-          />
+          <Route path="/detail/:id" element={<Detail />} />
           <Route
             path="/profile"
             element={<Profile user={user} setUser={setUser} />}

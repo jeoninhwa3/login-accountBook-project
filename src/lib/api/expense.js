@@ -11,3 +11,16 @@ export const getExpenses = async () => {
     alert(error.response.data.message);
   }
 };
+
+export const addExpenses = async (newExpense) => {
+  try {
+    const response = await axios.post(
+      `${JSON_SERVER_URL}/expenses`,
+      newExpense
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error.response.data.message);
+    alert(error.response.data.message);
+  }
+};

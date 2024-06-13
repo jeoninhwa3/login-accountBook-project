@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import dummy from "../dummy.json";
 import { useEffect } from "react";
 
 // styled component

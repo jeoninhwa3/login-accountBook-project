@@ -2,29 +2,15 @@ import SelectMonth from "../components/SelectMonth";
 import ExpensesList from "../components/ExpensesList.jsx";
 import AddExpenses from "../components/AddExpenses.jsx";
 
-const Home = ({
-  selectedMonth,
-  setSelectedMonth,
-  expenses,
-  setExpenses,
-  user,
-}) => {
-  const filterExpense = expenses.filter(
-    (expense) => parseInt(expense.date.split("-")[1]) === selectedMonth
-  );
+const Home = ({ selectedMonth, setSelectedMonth, user }) => {
   return (
     <>
-      <AddExpenses setExpenses={setExpenses} />
+      <AddExpenses user={user} />
       <SelectMonth
         selectedMonth={selectedMonth}
         setSelectedMonth={setSelectedMonth}
-        setExpenses={setExpenses}
       />
-      <ExpensesList
-        expenses={filterExpense}
-        setExpenses={setExpenses}
-        user={user}
-      />
+      <ExpensesList user={user} />
     </>
   );
 };
