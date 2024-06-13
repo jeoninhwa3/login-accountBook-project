@@ -30,14 +30,17 @@ const Header = ({ user, setUser }) => {
     <StHeader>
       <h1 onClick={() => navigate("/")}>Account Book</h1>
       <div>
-        <>
-          <button onClick={() => navigate("/profile")}>my profile</button>
-          <div>
-            <img src={user?.avatar} alt="user avatar" width={50} />
-            <span>{user?.nickname}</span>
-          </div>
-          <button onClick={handleLogout}>logout</button>
-        </>
+        {/* user 정보가 있을 때만 아래 버튼들 생성 */}
+        {user && (
+          <>
+            <button onClick={() => navigate("/profile")}>my profile</button>
+            <div>
+              <img src={user?.avatar} alt="user avatar" width={50} />
+              <span>{user?.nickname}</span>
+            </div>
+            <button onClick={handleLogout}>logout</button>
+          </>
+        )}
       </div>
     </StHeader>
   );

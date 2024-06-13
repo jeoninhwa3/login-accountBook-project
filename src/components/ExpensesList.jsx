@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useQuery } from "@tanstack/react-query";
+import { getExpenses } from "../lib/api/expense";
 
 // styled component
 const StUl = styled.ul`
@@ -35,15 +37,28 @@ const StDesc = styled.p`
   overflow: hidden;
 `;
 
-const ExpensesList = ({ expenses }) => {
+const ExpensesList = ({ user }) => {
+  const {
+    data: expenses = [],
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["expense"],
+    queryFn: getExpenses,
+  });
+  if (isLoading) {
+    return <div>로딩중입니다.</div>;
+  }
   return (
     <StUl>
-      {expenses.map((el) => {
+      {expenses.data.map((el) => {
         return (
           <li key={el.id}>
             <StLink to={`/detail/${el.id}`}>
               <div>
-                <p>{el.date}</p>
+                <p>
+                  {el.date} / {user.nickname}
+                </p>
                 <StDesc>
                   {el.item} - {el.description}
                 </StDesc>

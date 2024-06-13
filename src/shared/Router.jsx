@@ -26,6 +26,8 @@ const Router = ({
                 setSelectedMonth={setSelectedMonth}
                 expenses={expenses}
                 setExpenses={setExpenses}
+                user={user}
+                setUser={setUser}
               />
             }
           />
