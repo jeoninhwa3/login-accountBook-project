@@ -22,7 +22,7 @@ const Router = ({ selectedMonth, setSelectedMonth, user, setUser }) => {
               />
             }
           />
-          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/detail/:id" element={<Detail user={user} />} />
           <Route
             path="/profile"
             element={<Profile user={user} setUser={setUser} />}

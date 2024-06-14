@@ -37,7 +37,7 @@ const StDesc = styled.p`
   overflow: hidden;
 `;
 
-const ExpensesList = () => {
+const ExpensesList = ({ selectedMonth }) => {
   const {
     data: expenses = [],
     isLoading,
@@ -49,10 +49,14 @@ const ExpensesList = () => {
   if (isLoading) {
     return <div>로딩중입니다.</div>;
   }
-  console.log(expenses);
+
+  const filterExpenses = expenses.data.filter(
+    (expense) => parseInt(expense.date.split("-")[1]) === selectedMonth
+  );
+
   return (
     <StUl>
-      {expenses.data.map((el) => {
+      {filterExpenses.map((el) => {
         return (
           <li key={el.id}>
             <StLink to={`/detail/${el.id}`}>

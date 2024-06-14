@@ -70,6 +70,14 @@
       "amount": "222",
       "description": "ddd",
       "createdBy": "인화1"
+    },
+    {
+      "id": "948986b9-eddb-4921-14dc-8f8d4fa2d7e7",
+      "date": "2024-06-05",
+      "item": "강의",
+      "amount": "100000",
+      "description": "리액트 강의 결제",
+      "createdBy": "인화1"
     }
   ]
 }

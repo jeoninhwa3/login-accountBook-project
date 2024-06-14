@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import uuid from "react-uuid";
 import { addExpenses } from "../lib/api/expense";
-import {
-  QueryClient,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // styled components
 const StForm = styled.form`

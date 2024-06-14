@@ -10,7 +10,7 @@ const Home = ({ selectedMonth, setSelectedMonth, user }) => {
         selectedMonth={selectedMonth}
         setSelectedMonth={setSelectedMonth}
       />
-      <ExpensesList user={user} />
+      <ExpensesList user={user} selectedMonth={selectedMonth} />
     </>
   );
 };
